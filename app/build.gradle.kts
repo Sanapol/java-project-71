@@ -1,6 +1,7 @@
 plugins {
     application
     id("java")
+    checkstyle
 }
 
 application {
