@@ -20,7 +20,7 @@ report:
 	make -C app jacocoTestReport
 
 lint:
-	make -C app checkstyleMain checkstyleTest
+	make -C app lint
 
 update-deps:
 	make -C app useLatestVersions
