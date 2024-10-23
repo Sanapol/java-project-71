@@ -30,7 +30,6 @@ public class Matcher {
             }
         }
 
-        Collections.sort(result, Comparator.comparing(s -> s.charAt(2)));
         return result;
     }
 
