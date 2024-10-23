@@ -1,11 +1,19 @@
 package hexlet.code;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
 public class Formatter {
 
-    public static String format(List<Map<String, Object>> result) {
-        return "";
+    public static String format(List<String> data) {
+        String result = "{";
+        Collections.sort(data, Comparator.comparing(s -> s.charAt(2)));
+
+        for (String results : data) {
+            result = result + "\n  " + results;
+        }
+        result = result + "\n}";
+        return result;
     }
 }
