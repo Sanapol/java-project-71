@@ -1,11 +1,50 @@
 package hexlet.code;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Matcher {
 
-    public static List<Map<String, Object>> match(Map<String, Object> parsedFile1, Map<String, Object> parsedFile2) {
-        return List.of(Map.of());
+    public static List<String> match(Map<String, Object> parsedFile1, Map<String, Object> parsedFile2) {
+        List<String> result = new ArrayList<>();
+        Set<Map.Entry<String, Object>> file1 = parsedFile1.entrySet();
+        Set<Map.Entry<String, Object>> file2 = parsedFile2.entrySet();
+
+        for (Map.Entry<String, Object> entry : file1) {
+            if (parsedFile2.containsKey(entry.getKey())) {
+                if (entry.getValue().equals(parsedFile2.get(entry.getKey()))) {
+                    System.out.println(entry.getValue());
+                    System.out.println(parsedFile2.get(entry.getKey()));
+                    result.add(createString(entry.getKey(), entry.getValue(), "not change"));
+                } else {
+                    result.add(createString(entry.getKey(), entry.getValue(), "change"));
+                    result.add(createString(entry.getKey(), parsedFile2.get(entry.getKey()), "add"));
+                }
+            } else {
+                result.add(createString(entry.getKey(), entry.getValue(), "change"));
+            }
+        }
+
+        for (Map.Entry<String, Object> entry : file2) {
+            if (!parsedFile1.containsKey(entry.getKey())) {
+                result.add(createString(entry.getKey(), entry.getValue(), "add"));
+            }
+        }
+
+        Collections.sort(result, Comparator.comparing(s -> s.charAt(2)));
+        return result;
+    }
+
+    public static String createString(String key, Object value, String status) {
+        String stringMap = "";
+        switch (status) {
+            case "not change":
+                return "  " + key + ": " + value;
+            case "change":
+                return "- " + key + ": " + value;
+            case "add":
+                return "+ " + key + ": " + value;
+            default:
+                throw new RuntimeException("wrong operations");
+        }
     }
 }
