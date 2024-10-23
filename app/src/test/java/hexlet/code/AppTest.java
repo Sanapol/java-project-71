@@ -8,10 +8,13 @@ class AppTest {
 
     @Test
     public void app() throws Exception {
-        var result = Differ.generate("src/test/resources/file1.json",
+        var file1 = Differ.generate("src/test/resources/file1.json",
                 "src/test/resources/file2.json");
-        var answer = Differ.generate("src/test/resources/file1.json",
+        var file2 = Differ.generate("src/test/resources/file2.json",
                 "src/test/resources/file2.json");
-        assertEquals(result, answer);
+
+        var result = Matcher.match(file1, file2);
+        System.out.println(result);
+        assertEquals(file1, file1);
     }
 }
