@@ -20,8 +20,8 @@ public class Differ {
     }
 
     public static String generate(String filepath1, String filepath2, String format) throws Exception {
-        String file1 = Reader.readFile(filepath1, format);
-        String file2 = Reader.readFile(filepath2, format);
+        String file1 = Reader.readFile(filepath1);
+        String file2 = Reader.readFile(filepath2);
 
         Map<String, Object> parsedFile1 = Parser.parse(file1);
         Map<String, Object> parsedFile2 = Parser.parse(file2);
