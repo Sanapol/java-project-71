@@ -22,7 +22,8 @@ class AppTest {
 
     @Test
     public void test2() throws Exception {
-        var result = Differ.generate("src/main/resources/fixtures/file1.json", "src/main/resources/fixtures/file2.json");
+        var result = Differ.generate("src/main/resources/fixtures/file1.json",
+                "src/main/resources/fixtures/file2.json");
         var answer = Files.readString(Paths.get("src/test/resources/fixtures/answer")).trim();
 
         System.out.println(result);
