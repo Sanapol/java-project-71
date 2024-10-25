@@ -16,7 +16,7 @@ public class Differ {
         Map<String, Object> parsedFile2 = Parser.parse(file2, fileFormat2);
 
         List<String> result = Matcher.match(parsedFile1, parsedFile2);
-        return Formatter.format(result);
+        return Formatter.format(result, "stylish");
     }
 
     public static String generate(String filepath1, String filepath2, String format) throws Exception {
@@ -30,6 +30,6 @@ public class Differ {
         Map<String, Object> parsedFile2 = Parser.parse(file2, fileFormat2);
 
         List<String> result = Matcher.match(parsedFile1, parsedFile2);
-        return Formatter.format(result);
+        return Formatter.format(result, format);
     }
 }

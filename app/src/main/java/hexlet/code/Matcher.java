@@ -1,9 +1,9 @@
 package hexlet.code;
 
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Map;
+import java.util.List;
 import java.util.Set;
+import java.util.ArrayList;
 
 public class Matcher {
 
@@ -13,21 +13,26 @@ public class Matcher {
         Set<Map.Entry<String, Object>> file2 = parsedFile2.entrySet();
 
         for (Map.Entry<String, Object> entry : file1) {
+
             if (parsedFile2.containsKey(entry.getKey())) {
-                if (entry.getValue().equals(parsedFile2.get(entry.getKey()))) {
-                    System.out.println(entry.getValue());
-                    System.out.println(parsedFile2.get(entry.getKey()));
+
+                if (entry.getValue() == null || parsedFile2.get(entry.getKey()) == null) {
+                    result.add(createString(entry.getKey(), entry.getValue(), "change"));
+                    result.add(createString(entry.getKey(), parsedFile2.get(entry.getKey()), "add"));
+                } else if (entry.getValue().equals(parsedFile2.get(entry.getKey()))) {
                     result.add(createString(entry.getKey(), entry.getValue(), "not change"));
                 } else {
                     result.add(createString(entry.getKey(), entry.getValue(), "change"));
                     result.add(createString(entry.getKey(), parsedFile2.get(entry.getKey()), "add"));
                 }
+
             } else {
                 result.add(createString(entry.getKey(), entry.getValue(), "change"));
             }
         }
 
         for (Map.Entry<String, Object> entry : file2) {
+
             if (!parsedFile1.containsKey(entry.getKey())) {
                 result.add(createString(entry.getKey(), entry.getValue(), "add"));
             }
@@ -37,16 +42,11 @@ public class Matcher {
     }
 
     public static String createString(String key, Object value, String status) {
-        String stringMap = "";
-        switch (status) {
-            case "not change":
-                return "  " + key + ": " + value;
-            case "change":
-                return "- " + key + ": " + value;
-            case "add":
-                return "+ " + key + ": " + value;
-            default:
-                throw new RuntimeException("wrong operations");
-        }
+        return switch (status) {
+            case "not change" -> "  " + key + ": " + value;
+            case "change" -> "- " + key + ": " + value;
+            case "add" -> "+ " + key + ": " + value;
+            default -> throw new RuntimeException("wrong operations");
+        };
     }
 }
