@@ -3,6 +3,7 @@ package hexlet.code;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 public class Reader {
 
@@ -18,7 +19,7 @@ public class Reader {
     }
 
     public static String getFormat(String filepath) {
-        var format = filepath.split(".");
+        var format = filepath.split("\\.");
         return format[format.length - 1];
     }
 }
