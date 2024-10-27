@@ -12,7 +12,7 @@ class AppTest {
     @Test
     public void test1() throws Exception {
         var result = Differ.generate("file1.yaml", "file2.yaml");
-        var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerJson")).trim();
+        var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerStylish")).trim();
 
         System.out.println(result);
         System.out.println("=======================");
@@ -23,8 +23,8 @@ class AppTest {
     @Test
     public void test2() throws Exception {
         var result = Differ.generate("src/main/resources/fixtures/file1.json",
-                "src/main/resources/fixtures/file2.json");
-        var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerJson")).trim();
+                "src/main/resources/fixtures/file2.json", "plain");
+        var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerPlain")).trim();
 
         System.out.println(result);
         System.out.println("=======================");

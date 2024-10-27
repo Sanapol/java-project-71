@@ -1,14 +1,15 @@
 package hexlet.code;
 
-import java.util.Map;
-import java.util.List;
-import java.util.Set;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Matcher {
 
-    public static List<String> match(Map<String, Object> parsedFile1, Map<String, Object> parsedFile2) {
-        List<String> result = new ArrayList<>();
+    public static List<Map<String, Object>> match(Map<String, Object> parsedFile1, Map<String, Object> parsedFile2) {
+        List<Map<String, Object>> result = new ArrayList<>();
+        Map<String, Object> update = new TreeMap<>();
+        Map<String, Object> add = new TreeMap<>();
+        Map<String, Object> remove = new TreeMap<>();
+        Map<String, Object> nothing = new TreeMap<>();
         Set<Map.Entry<String, Object>> file1 = parsedFile1.entrySet();
         Set<Map.Entry<String, Object>> file2 = parsedFile2.entrySet();
 
@@ -17,36 +18,30 @@ public class Matcher {
             if (parsedFile2.containsKey(entry.getKey())) {
 
                 if (entry.getValue() == null || parsedFile2.get(entry.getKey()) == null) {
-                    result.add(createString(entry.getKey(), entry.getValue(), "change"));
-                    result.add(createString(entry.getKey(), parsedFile2.get(entry.getKey()), "add"));
+                    update.put("- " + entry.getKey(), entry.getValue());
+                    update.put("+ " + entry.getKey(), parsedFile2.get(entry.getKey()));
                 } else if (entry.getValue().equals(parsedFile2.get(entry.getKey()))) {
-                    result.add(createString(entry.getKey(), entry.getValue(), "not change"));
+                    nothing.put("  " + entry.getKey(), entry.getValue());
                 } else {
-                    result.add(createString(entry.getKey(), entry.getValue(), "change"));
-                    result.add(createString(entry.getKey(), parsedFile2.get(entry.getKey()), "add"));
+                    update.put("- " + entry.getKey(), entry.getValue());
+                    update.put("+ " + entry.getKey(), parsedFile2.get(entry.getKey()));
                 }
 
             } else {
-                result.add(createString(entry.getKey(), entry.getValue(), "change"));
+                remove.put("- " + entry.getKey(), entry.getValue());
             }
         }
 
         for (Map.Entry<String, Object> entry : file2) {
 
             if (!parsedFile1.containsKey(entry.getKey())) {
-                result.add(createString(entry.getKey(), entry.getValue(), "add"));
+                add.put("+ " + entry.getKey(), entry.getValue());
             }
         }
-
+        result.add(update);
+        result.add(add);
+        result.add(remove);
+        result.add(nothing);
         return result;
-    }
-
-    public static String createString(String key, Object value, String status) {
-        return switch (status) {
-            case "not change" -> "  " + key + ": " + value;
-            case "change" -> "- " + key + ": " + value;
-            case "add" -> "+ " + key + ": " + value;
-            default -> throw new RuntimeException("wrong operations");
-        };
     }
 }

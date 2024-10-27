@@ -15,7 +15,7 @@ public class Differ {
         Map<String, Object> parsedFile1 = Parser.parse(file1, fileFormat1);
         Map<String, Object> parsedFile2 = Parser.parse(file2, fileFormat2);
 
-        List<String> result = Matcher.match(parsedFile1, parsedFile2);
+        List<Map<String, Object>> result = Matcher.match(parsedFile1, parsedFile2);
         return Formatter.format(result, "stylish");
     }
 
@@ -29,7 +29,7 @@ public class Differ {
         Map<String, Object> parsedFile1 = Parser.parse(file1, fileFormat1);
         Map<String, Object> parsedFile2 = Parser.parse(file2, fileFormat2);
 
-        List<String> result = Matcher.match(parsedFile1, parsedFile2);
+        List<Map<String, Object>> result = Matcher.match(parsedFile1, parsedFile2);
         return Formatter.format(result, format);
     }
 }
