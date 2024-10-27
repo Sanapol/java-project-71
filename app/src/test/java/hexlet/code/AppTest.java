@@ -12,11 +12,8 @@ class AppTest {
     @Test
     public void test1() throws Exception {
         var result = Differ.generate("file1.yaml", "file2.yaml");
-        var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerStylish")).trim();
+        var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerStylish"));
 
-        System.out.println(result);
-        System.out.println("=======================");
-        System.out.println(answer);
         assertEquals(result, answer);
     }
 
@@ -24,11 +21,17 @@ class AppTest {
     public void test2() throws Exception {
         var result = Differ.generate("src/main/resources/fixtures/file1.json",
                 "src/main/resources/fixtures/file2.json", "plain");
-        var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerPlain")).trim();
+        var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerPlain"));
 
-        System.out.println(result);
-        System.out.println("=======================");
-        System.out.println(answer);
+        assertEquals(result, answer);
+    }
+
+    @Test
+    public void test3() throws Exception {
+        var result = Differ.generate("src/main/resources/fixtures/file1.json",
+                "src/main/resources/fixtures/file2.json", "json");
+        var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerJson"));
+
         assertEquals(result, answer);
     }
 }
