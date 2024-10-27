@@ -1,6 +1,11 @@
 package hexlet.code;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
 
 public class Formatter {
 
@@ -36,11 +41,10 @@ public class Formatter {
         List<String> map2 = new ArrayList<>(listMaps.get(1).keySet());
         List<String> map3 = new ArrayList<>(listMaps.get(2).keySet());
 
-            for (int i = 0; i < map1.size() / 2; i = i + 1) {
-                formatResult.add("Property '" + map1.get(i).substring(2) + "' was updated. From " +
-                        listMaps.get(0).get(map1.get(map1.size() / 2 + i)) + " to " + listMaps.get(0).get(map1.get(i)));
-            }
-
+        for (int i = 0; i < map1.size() / 2; i = i + 1) {
+            formatResult.add("Property '" + map1.get(i).substring(2) + "' was updated. From "
+                    + listMaps.get(0).get(map1.get(map1.size() / 2 + i)) + " to " + listMaps.get(0).get(map1.get(i)));
+        }
 
         for (String format : formatResult) {
             result.append("\n").append(format);
@@ -48,7 +52,6 @@ public class Formatter {
         result.append("\n}");
         return result.toString();
     }
-
 
     private static List<String> mergeKeys(List<Map<String, Object>> listMaps) {
         List<String> formatKeys = new ArrayList<>();
