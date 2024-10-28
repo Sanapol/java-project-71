@@ -19,8 +19,8 @@ public class Plain {
 
         for (int i = 0; i < updateKeys.size() / 2; i = i + 1) {
             formatResult.add("Property '" + updateKeys.get(i).substring(2) + "' was updated. From "
-                    + formatValue(listMaps.get(Constants.UPDATE_MAP).get(updateKeys.get(updateKeys.size() / 2 + i))) + " to "
-                    + formatValue(listMaps.get(Constants.UPDATE_MAP).get(updateKeys.get(i))));
+                    + formatValue(listMaps.get(Constants.UPDATE_MAP).get(updateKeys.get(updateKeys.size() / 2 + i)))
+                    + " to " + formatValue(listMaps.get(Constants.UPDATE_MAP).get(updateKeys.get(i))));
         }
 
         for (String key : addKeys) {
