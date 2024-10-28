@@ -2,6 +2,7 @@ package hexlet.code.formats;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import hexlet.code.Constains;
 
 import java.util.Comparator;
 import java.util.List;
@@ -27,10 +28,10 @@ public class Json {
 
     private static List<String> mergeKeys(List<Map<String, Object>> listMaps) {
         List<String> formatKeys = new ArrayList<>();
-        List<String> keysUpdate = new ArrayList<>(listMaps.get(0).keySet());
-        List<String> keysAdd = new ArrayList<>(listMaps.get(1).keySet());
-        List<String> keysRemove = new ArrayList<>(listMaps.get(2).keySet());
-        List<String> keysNothing = new ArrayList<>(listMaps.get(3).keySet());
+        List<String> keysUpdate = new ArrayList<>(listMaps.get(Constains.UPDATE_MAP).keySet());
+        List<String> keysAdd = new ArrayList<>(listMaps.get(Constains.ADD_MAP).keySet());
+        List<String> keysRemove = new ArrayList<>(listMaps.get(Constains.REMOVE_MAP).keySet());
+        List<String> keysNothing = new ArrayList<>(listMaps.get(Constains.NOTHING_MAP).keySet());
         formatKeys.addAll(keysAdd);
         formatKeys.addAll(keysRemove);
         formatKeys.addAll(keysNothing);
@@ -43,10 +44,10 @@ public class Json {
 
     private static Map<String, Object> mergeMaps(List<Map<String, Object>> listMaps) {
         Map<String, Object> maps = new HashMap<>();
-        Map<String, Object> map1 = new HashMap<>(listMaps.get(0));
-        Map<String, Object> map2 = new HashMap<>(listMaps.get(1));
-        Map<String, Object> map3 = new HashMap<>(listMaps.get(2));
-        Map<String, Object> map4 = new HashMap<>(listMaps.get(3));
+        Map<String, Object> map1 = new HashMap<>(listMaps.get(Constains.UPDATE_MAP));
+        Map<String, Object> map2 = new HashMap<>(listMaps.get(Constains.ADD_MAP));
+        Map<String, Object> map3 = new HashMap<>(listMaps.get(Constains.REMOVE_MAP));
+        Map<String, Object> map4 = new HashMap<>(listMaps.get(Constains.NOTHING_MAP));
         maps.putAll(map1);
         maps.putAll(map2);
         maps.putAll(map3);
