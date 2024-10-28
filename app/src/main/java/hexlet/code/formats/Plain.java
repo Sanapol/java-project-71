@@ -37,7 +37,6 @@ public class Plain {
         for (String format : formatResult) {
             result.append("\n").append(format);
         }
-        result.append("\n");
         return result.toString();
     }
 
