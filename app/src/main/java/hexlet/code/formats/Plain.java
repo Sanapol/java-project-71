@@ -1,6 +1,6 @@
 package hexlet.code.formats;
 
-import hexlet.code.Constains;
+import hexlet.code.Constants;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -13,14 +13,14 @@ public class Plain {
 
         StringBuilder result = new StringBuilder();
         List<String> formatResult = new ArrayList<>();
-        List<String> updateKeys = new ArrayList<>(listMaps.get(Constains.UPDATE_MAP).keySet());
-        List<String> addKeys = new ArrayList<>(listMaps.get(Constains.ADD_MAP).keySet());
-        List<String> removeKeys = new ArrayList<>(listMaps.get(Constains.REMOVE_MAP).keySet());
+        List<String> updateKeys = new ArrayList<>(listMaps.get(Constants.UPDATE_MAP).keySet());
+        List<String> addKeys = new ArrayList<>(listMaps.get(Constants.ADD_MAP).keySet());
+        List<String> removeKeys = new ArrayList<>(listMaps.get(Constants.REMOVE_MAP).keySet());
 
         for (int i = 0; i < updateKeys.size() / 2; i = i + 1) {
             formatResult.add("Property '" + updateKeys.get(i).substring(2) + "' was updated. From "
-                    + formatValue(listMaps.get(Constains.UPDATE_MAP).get(updateKeys.get(updateKeys.size() / 2 + i))) + " to "
-                    + formatValue(listMaps.get(Constains.UPDATE_MAP).get(updateKeys.get(i))));
+                    + formatValue(listMaps.get(Constants.UPDATE_MAP).get(updateKeys.get(updateKeys.size() / 2 + i))) + " to "
+                    + formatValue(listMaps.get(Constants.UPDATE_MAP).get(updateKeys.get(i))));
         }
 
         for (String key : addKeys) {
