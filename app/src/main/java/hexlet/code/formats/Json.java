@@ -23,7 +23,7 @@ public class Json {
             objectMapper.writeValueAsString(list.append("\n  ").append(readyKeys).append(": ")
                     .append(maps.get(readyKeys)));
         }
-        return list.toString().trim();
+        return list.toString();
     }
 
     private static List<String> mergeKeys(List<Map<String, Object>> listMaps) {

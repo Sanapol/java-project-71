@@ -37,7 +37,7 @@ public class Plain {
         for (String format : formatResult) {
             result.append("\n").append(format);
         }
-        return result.toString().trim();
+        return result.toString();
     }
 
     private static Object formatValue(Object object) {
