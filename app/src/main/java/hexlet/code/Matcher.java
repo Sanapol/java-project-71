@@ -21,14 +21,12 @@ public class Matcher {
 
             if (parsedFile2.containsKey(entry.getKey())) {
 
-                if (entry.getValue() == null || parsedFile2.get(entry.getKey()) == null) {
+                if (entry.getValue() == null || parsedFile2.get(entry.getKey()) == null
+                        || !entry.getValue().equals(parsedFile2.get(entry.getKey()))) {
                     update.put("- " + entry.getKey(), entry.getValue());
                     update.put("+ " + entry.getKey(), parsedFile2.get(entry.getKey()));
-                } else if (entry.getValue().equals(parsedFile2.get(entry.getKey()))) {
-                    nothing.put("  " + entry.getKey(), entry.getValue());
                 } else {
-                    update.put("- " + entry.getKey(), entry.getValue());
-                    update.put("+ " + entry.getKey(), parsedFile2.get(entry.getKey()));
+                    nothing.put("  " + entry.getKey(), entry.getValue());
                 }
 
             } else {
