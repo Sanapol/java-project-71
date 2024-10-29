@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Plain {
 
-    public static String plain(List<Map<String, Object>> listMaps) {
+    public static String create(List<Map<String, Object>> listMaps) {
 
         StringBuilder result = new StringBuilder();
         List<String> formatResult = new ArrayList<>();

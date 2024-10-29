@@ -7,7 +7,8 @@ import picocli.CommandLine.Parameters;
 
 import java.util.concurrent.Callable;
 
-@Command(name = "Utility", mixinStandardHelpOptions = true)
+@Command(name = "Utility", mixinStandardHelpOptions = true, version = "Utility 1.0",
+        description = "Calculates the difference between the second file and the first one.")
 public class App implements Callable<Integer> {
 
     @Parameters(index = "0", paramLabel = "filepath1", description = "path to first file")

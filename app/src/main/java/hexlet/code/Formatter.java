@@ -15,9 +15,9 @@ public class Formatter {
         String trueFormat = format.toLowerCase();
 
         return switch (trueFormat) {
-            case "stylish" -> Stylish.stylish(map);
-            case "plain" -> Plain.plain(map);
-            case "json" -> Json.json(map);
+            case Constants.STYLISH_FORMAT -> Stylish.create(map);
+            case Constants.PLAIN_FORMAT -> Plain.create(map);
+            case Constants.JSON_FORMAT -> Json.create(map);
             default -> throw new RuntimeException("format error");
         };
     }

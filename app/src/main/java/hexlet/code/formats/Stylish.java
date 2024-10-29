@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Stylish {
 
-    public static String stylish(List<Map<String, Object>> listMaps) {
+    public static String create(List<Map<String, Object>> listMaps) {
         StringBuilder result = new StringBuilder("{");
         Map<String, Object> maps = Merger.mergerMaps(listMaps);
         List<String> formatKeys = Merger.mergerKeys(listMaps);

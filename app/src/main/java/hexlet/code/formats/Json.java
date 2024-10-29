@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Json {
-    public static String json(List<Map<String, Object>> listMaps) throws JsonProcessingException {
+    public static String create(List<Map<String, Object>> listMaps) throws JsonProcessingException {
         StringBuilder list = new StringBuilder();
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> maps = Merger.mergerMaps(listMaps);
