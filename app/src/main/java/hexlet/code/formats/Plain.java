@@ -18,7 +18,8 @@ public class Plain {
         List<String> removeKeys = new ArrayList<>(listMaps.get(Constants.REMOVE_MAP).keySet());
 
         for (int i = 0; i < updateKeys.size() / 2; i++) {
-            formatResult.add("Property '" + updateKeys.get(i).substring(Constants.KEY_WITHOUT_MARK) + "' was updated. From "
+            formatResult.add("Property '" + updateKeys.get(i).substring(Constants.KEY_WITHOUT_MARK)
+                    + "' was updated. From "
                     + formatValue(listMaps.get(Constants.UPDATE_MAP).get(updateKeys.get(updateKeys.size() / 2 + i)))
                     + " to " + formatValue(listMaps.get(Constants.UPDATE_MAP).get(updateKeys.get(i))));
         }
