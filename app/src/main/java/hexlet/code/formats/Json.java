@@ -17,7 +17,7 @@ public class Json {
         Map<String, Object> maps = mergeMaps(listMaps);
         List<String> formatKeys = mergeKeys(listMaps);
 
-        formatKeys.sort(Comparator.comparing(s -> s.substring(1)));
+        formatKeys.sort(Comparator.comparing(s -> s.substring(Constants.KEY_WITHOUT_MARK)));
 
         for (String readyKeys : formatKeys) {
             list.append("  ").append(readyKeys).append(": ")

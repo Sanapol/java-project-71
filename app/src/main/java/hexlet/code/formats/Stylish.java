@@ -15,7 +15,7 @@ public class Stylish {
         Map<String, Object> maps = mergeMaps(listMaps);
         List<String> formatKeys = mergeKeys(listMaps);
 
-        formatKeys.sort(Comparator.comparing(s -> s.substring(1)));
+        formatKeys.sort(Comparator.comparing(s -> s.substring(Constants.KEY_WITHOUT_MARK)));
 
         for (String readyKeys : formatKeys) {
             result.append("\n  ").append(readyKeys).append(": ").append(maps.get(readyKeys));

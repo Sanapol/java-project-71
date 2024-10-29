@@ -17,22 +17,22 @@ public class Plain {
         List<String> addKeys = new ArrayList<>(listMaps.get(Constants.ADD_MAP).keySet());
         List<String> removeKeys = new ArrayList<>(listMaps.get(Constants.REMOVE_MAP).keySet());
 
-        for (int i = 0; i < updateKeys.size() / 2; i = i + 1) {
-            formatResult.add("Property '" + updateKeys.get(i).substring(2) + "' was updated. From "
+        for (int i = 0; i < updateKeys.size() / 2; i++) {
+            formatResult.add("Property '" + updateKeys.get(i).substring(Constants.KEY_WITHOUT_MARK) + "' was updated. From "
                     + formatValue(listMaps.get(Constants.UPDATE_MAP).get(updateKeys.get(updateKeys.size() / 2 + i)))
                     + " to " + formatValue(listMaps.get(Constants.UPDATE_MAP).get(updateKeys.get(i))));
         }
 
         for (String key : addKeys) {
-            formatResult.add("Property '" + key.substring(2) + "' was added with value: "
-                    + formatValue(listMaps.get(1).get(key)));
+            formatResult.add("Property '" + key.substring(Constants.KEY_WITHOUT_MARK) + "' was added with value: "
+                    + formatValue(listMaps.get(Constants.ADD_MAP).get(key)));
         }
 
         for (String key : removeKeys) {
-            formatResult.add("Property '" + key.substring(2) + "' was removed");
+            formatResult.add("Property '" + key.substring(Constants.KEY_WITHOUT_MARK) + "' was removed");
         }
 
-        formatResult.sort(Comparator.comparing(s -> s.substring(10)));
+        formatResult.sort(Comparator.comparing(s -> s.substring(Constants.START_ON_KEY)));
 
         for (String format : formatResult) {
             result.append("\n").append(format);
