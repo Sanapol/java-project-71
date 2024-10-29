@@ -12,10 +12,11 @@ public class Parser {
         Map<String, Object> result = new HashMap<>();
         ObjectMapper mapperJson = new ObjectMapper();
         ObjectMapper mapperYaml = new YAMLMapper();
+        format = format.toLowerCase();
 
         if (format.equals("json")) {
             result = mapperJson.readValue(content, Map.class);
-        } else if (format.equals("yaml")) {
+        } else if (format.equals("yaml") || format.equals("yml")) {
             result = mapperYaml.readValue(content, Map.class);
         }
         return result;

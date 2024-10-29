@@ -19,6 +19,14 @@ class AppTest {
 
     @Test
     public void test2() throws Exception {
+        var result = Differ.generate("file1.yml", "file2.yml");
+        var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerStylish"));
+
+        assertEquals(result, answer);
+    }
+
+    @Test
+    public void test3() throws Exception {
         var result = Differ.generate("src/main/resources/fixtures/file1.json",
                 "src/main/resources/fixtures/file2.json", "plain");
         var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerPlain")).trim();
@@ -27,7 +35,7 @@ class AppTest {
     }
 
     @Test
-    public void test3() throws Exception {
+    public void test4() throws Exception {
         var result = Differ.generate("src/main/resources/fixtures/file1.json",
                 "src/main/resources/fixtures/file2.json", "json");
         var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerJson"));
