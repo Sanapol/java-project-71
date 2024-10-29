@@ -32,6 +32,7 @@ class AppTest {
                 "src/main/resources/fixtures/file2.json", "json");
         var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerJson"));
 
+        System.out.println(result);
         assertEquals(result, answer);
     }
 }

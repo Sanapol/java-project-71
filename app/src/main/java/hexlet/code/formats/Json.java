@@ -20,10 +20,10 @@ public class Json {
         formatKeys.sort(Comparator.comparing(s -> s.substring(1)));
 
         for (String readyKeys : formatKeys) {
-            objectMapper.writeValueAsString(list.append("\n  ").append(readyKeys).append(": ")
-                    .append(maps.get(readyKeys)));
+            list.append("  ").append(readyKeys).append(": ")
+                    .append(maps.get(readyKeys));
         }
-        return list.toString();
+        return objectMapper.writeValueAsString(list.toString());
     }
 
     private static List<String> mergeKeys(List<Map<String, Object>> listMaps) {
