@@ -29,7 +29,7 @@ class AppTest {
     public void test3() throws Exception {
         var result = Differ.generate("src/main/resources/fixtures/file1.json",
                 "src/main/resources/fixtures/file2.json", "plain");
-        var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerPlain")).trim();
+        var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerPlain"));
 
         assertEquals(result, answer);
     }
