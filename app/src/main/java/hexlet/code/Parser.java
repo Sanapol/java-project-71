@@ -10,9 +10,15 @@ public class Parser {
     public static Map<String, Object> parse(String content, String format) throws Exception {
         ObjectMapper mapperJson = new ObjectMapper();
         ObjectMapper mapperYaml = new YAMLMapper();
-        format = format.toLowerCase();
+        String editFormat = "";
 
-        return switch (format) {
+        if (format == null) {
+            throw new RuntimeException("Unknown format");
+        } else {
+            editFormat = format.toLowerCase();
+        }
+
+        return switch (editFormat) {
             case Constants.JSON_FORMAT -> mapperJson.readValue(content, Map.class);
             case Constants.YAML_FORMAT, Constants.YML_FORMAT -> mapperYaml.readValue(content, Map.class);
             default -> throw new RuntimeException("Unknown format");
