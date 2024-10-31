@@ -12,7 +12,13 @@ import java.util.Map;
 public class Formatter {
 
     public static String format(List<Map<String, Object>> map, String format) throws JsonProcessingException {
-        String trueFormat = format.toLowerCase();
+        String trueFormat = "";
+
+        if (format == null) {
+            throw new RuntimeException("Unknown format");
+        } else {
+            trueFormat = format.toLowerCase();
+        }
 
         return switch (trueFormat) {
             case Constants.STYLISH_FORMAT -> Stylish.create(map);

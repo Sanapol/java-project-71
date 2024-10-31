@@ -1,61 +1,50 @@
 package hexlet.code;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.Set;
+import java.util.*;
 
 public class Matcher {
 
     public static List<Map<String, Object>> match(Map<String, Object> parsedFile1, Map<String, Object> parsedFile2) {
-        Set<Map.Entry<String, Object>> file1 = parsedFile1.entrySet();
-        Set<Map.Entry<String, Object>> file2 = parsedFile2.entrySet();
-        List<Map<String, Object>> result = new ArrayList<>(matchChanges(file1, parsedFile2));
+        List<String> keys = new ArrayList<>();
+        keys.addAll(parsedFile1.keySet());
+        keys.addAll(parsedFile2.keySet());
 
-        result.add(matchAdd(file2, parsedFile1));
-        return result;
+        return matchChanges(keys, parsedFile1, parsedFile2);
     }
 
     private static List<Map<String, Object>> matchChanges(
-            Set<Map.Entry<String, Object>> entryFile1, Map<String, Object> parsedFile2) {
+            List<String> keys, Map<String, Object> parsedFile1, Map<String, Object> parsedFile2) {
         List<Map<String, Object>> matchFiles = new ArrayList<>();
         Map<String, Object> update = new TreeMap<>();
         Map<String, Object> nothing = new TreeMap<>();
         Map<String, Object> remove = new TreeMap<>();
+        Map<String, Object> add = new TreeMap<>();
 
-        for (Map.Entry<String, Object> entry : entryFile1) {
+        for (String key : keys) {
 
-            if (parsedFile2.containsKey(entry.getKey())) {
+            if (!parsedFile1.containsKey(key)) {
 
-                if (entry.getValue() == null || parsedFile2.get(entry.getKey()) == null
-                        || !entry.getValue().equals(parsedFile2.get(entry.getKey()))) {
-                    update.put("- " + entry.getKey(), entry.getValue());
-                    update.put("+ " + entry.getKey(), parsedFile2.get(entry.getKey()));
-                } else {
-                    nothing.put("  " + entry.getKey(), entry.getValue());
-                }
+                add.put("+ " + key, parsedFile2.get(key));
+
+            } else if (!parsedFile2.containsKey(key)) {
+
+                remove.put("- " + key, parsedFile1.get(key));
+
+            } else if (parsedFile1.get(key) == null || parsedFile2.get(key) == null
+                    || !parsedFile1.get(key).equals(parsedFile2.get(key))) {
+
+                update.put("- " + key, parsedFile1.get(key));
+                update.put("+ " + key, parsedFile2.get(key));
+
             } else {
-                remove.put("- " + entry.getKey(), entry.getValue());
+                nothing.put("  " + key, parsedFile1.get(key));
             }
         }
 
         matchFiles.add(update);
+        matchFiles.add(add);
         matchFiles.add(remove);
         matchFiles.add(nothing);
         return matchFiles;
-    }
-
-    private static Map<String, Object> matchAdd(
-            Set<Map.Entry<String, Object>> entryFile2, Map<String, Object> parsedFile1) {
-        Map<String, Object> add = new TreeMap<>();
-
-        for (Map.Entry<String, Object> entry : entryFile2) {
-
-            if (!parsedFile1.containsKey(entry.getKey())) {
-                add.put("+ " + entry.getKey(), entry.getValue());
-            }
-        }
-        return add;
     }
 }
