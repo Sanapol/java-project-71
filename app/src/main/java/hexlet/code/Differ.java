@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public final class Differ {
+    public static final String DEFAULT_FORMAT = "stylish";
 
     public static String generate(String filepath1, String filepath2, String format) throws Exception {
         String file1 = Reader.readFile(filepath1);
@@ -20,6 +21,6 @@ public final class Differ {
     }
 
     public static String generate(String filepath1, String filepath2) throws Exception {
-        return generate(filepath1, filepath2, "stylish");
+        return generate(filepath1, filepath2, DEFAULT_FORMAT);
     }
 }
