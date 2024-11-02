@@ -3,7 +3,7 @@ package hexlet.code;
 import java.util.List;
 import java.util.Map;
 
-public final class Differ {
+public class Differ {
     public static final String DEFAULT_FORMAT = "stylish";
 
     public static String generate(String filepath1, String filepath2, String format) throws Exception {
