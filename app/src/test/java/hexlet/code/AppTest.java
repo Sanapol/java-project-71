@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Files;
@@ -9,37 +10,38 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AppTest {
 
-    @Test
-    public void test1() throws Exception {
-        var result = Differ.generate("file1.yaml", "file2.yaml");
-        var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerStylish"));
+    private static String answerStylish;
+    private static String answerPlain;
+    private static String answerJson;
 
-        assertEquals(result, answer);
+    @BeforeAll
+    public static void testsAnswer() throws Exception {
+
+        answerStylish = Files.readString(Paths.get("src/test/resources/fixtures/answerStylish"));
+        answerPlain = Files.readString(Paths.get("src/test/resources/fixtures/answerPlain"));
+        answerJson = Files.readString(Paths.get("src/test/resources/fixtures/answerJson"));
     }
 
     @Test
-    public void test2() throws Exception {
-        var result = Differ.generate("file1.yml", "file2.yml");
-        var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerStylish"));
+    public void testStylishFormat() throws Exception {
+        String result = Differ.generate("file1.yaml", "file2.yaml");
 
-        assertEquals(result, answer);
+        assertEquals(result, answerStylish);
     }
 
     @Test
-    public void test3() throws Exception {
-        var result = Differ.generate("src/main/resources/fixtures/file1.json",
-                "src/main/resources/fixtures/file2.json", "plain");
-        var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerPlain"));
+    public void testPlainFormat() throws Exception {
+        String result = Differ.generate("src/main/resources/fixtures/file1.yml",
+                "src/main/resources/fixtures/file2.yml", "plain");
 
-        assertEquals(result, answer);
+        assertEquals(result, answerPlain);
     }
 
     @Test
-    public void test4() throws Exception {
-        var result = Differ.generate("src/main/resources/fixtures/file1.json",
+    public void testJsonFormat() throws Exception {
+        String result = Differ.generate("src/main/resources/fixtures/file1.json",
                 "src/main/resources/fixtures/file2.json", "json");
-        var answer = Files.readString(Paths.get("src/test/resources/fixtures/answerJson"));
 
-        assertEquals(result, answer);
+        assertEquals(result, answerJson);
     }
 }
